@@ -1,0 +1,1205 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UzKiril Pro — O‘zbekcha ↔ Кирилл</title>
+
+<style>
+:root{
+  --bg:#07111f;
+  --card:#0d1b2e;
+  --text:#eef6ff;
+  --muted:#91a4bb;
+  --accent:#6d7cff;
+  --accent2:#00d4ff;
+  --border:#ffffff14;
+  --shadow:0 25px 70px #0008;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 0%,#253b9b55,transparent 32%),
+    radial-gradient(circle at 90% 15%,#00cfff22,transparent 30%),
+    var(--bg);
+  min-height:100vh;
+  overflow-x:hidden
+}
+
+.bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:-1
+}
+
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(3px);
+  opacity:.35;
+  animation:float 10s ease-in-out infinite
+}
+
+.o1{
+  width:280px;
+  height:280px;
+  background:#6d7cff;
+  left:-80px;
+  top:120px
+}
+
+.o2{
+  width:220px;
+  height:220px;
+  background:#00d4ff;
+  right:-50px;
+  top:450px;
+  animation-delay:2s
+}
+
+.o3{
+  width:160px;
+  height:160px;
+  background:#a855f7;
+  left:45%;
+  top:780px;
+  animation-delay:4s
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-30px) translateX(20px) scale(1.08)
+  }
+}
+
+@keyframes pulse{
+  50%{
+    box-shadow:
+      0 0 0 10px #6d7cff12,
+      0 0 45px #6d7cff55
+  }
+}
+
+.container{
+  max-width:1180px;
+  margin:auto;
+  padding:24px 18px 70px
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 0 28px
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  font-size:23px
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  box-shadow:0 10px 35px #00d4ff33;
+  animation:pulse 3s infinite
+}
+
+.nav span{
+  color:var(--muted);
+  font-size:13px
+}
+
+.hero{
+  text-align:center;
+  padding:30px 0 35px
+}
+
+.badge{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  border:1px solid var(--border);
+  background:#ffffff08;
+  padding:8px 13px;
+  border-radius:99px;
+  color:#cdd9ff;
+  font-size:13px;
+  backdrop-filter:blur(12px)
+}
+
+.hero h1{
+  font-size:clamp(36px,7vw,72px);
+  line-height:1;
+  margin:20px 0 14px;
+  background:linear-gradient(90deg,#fff,#aebaff,#7ceaff);
+  -webkit-background-clip:text;
+  color:transparent;
+  letter-spacing:-3px
+}
+
+.hero p{
+  max-width:700px;
+  margin:auto;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6
+}
+
+.card{
+  background:linear-gradient(145deg,#ffffff0c,#ffffff04);
+  border:1px solid var(--border);
+  border-radius:25px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(20px);
+  overflow:hidden
+}
+
+.toolbar{
+  display:flex;
+  gap:9px;
+  align-items:center;
+  padding:14px;
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap
+}
+
+.toolbar button,
+.btn{
+  border:1px solid var(--border);
+  background:#ffffff09;
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s
+}
+
+.toolbar button:hover,
+.btn:hover{
+  transform:translateY(-2px);
+  background:#ffffff14
+}
+
+.toolbar .active,
+.primary{
+  background:linear-gradient(135deg,var(--accent),#4f46e5);
+  border-color:transparent;
+  box-shadow:0 8px 25px #5967ff33
+}
+
+.spacer{flex:1}
+
+.main{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0
+}
+
+.panel{
+  min-width:0
+}
+
+.panel+.panel{
+  border-left:1px solid var(--border)
+}
+
+.panelhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 17px;
+  color:#dce7f7;
+  font-weight:800
+}
+
+.tag{
+  font-size:11px;
+  color:#8fa5bd;
+  background:#ffffff09;
+  border:1px solid var(--border);
+  padding:5px 8px;
+  border-radius:8px
+}
+
+textarea{
+  display:block;
+  width:100%;
+  height:330px;
+  resize:vertical;
+  border:0;
+  border-top:1px solid var(--border);
+  outline:0;
+  background:#071322aa;
+  color:#f7fbff;
+  padding:20px;
+  font-size:18px;
+  line-height:1.65;
+  font-family:inherit
+}
+
+textarea::placeholder{
+  color:#5d7189
+}
+
+.foot{
+  display:flex;
+  justify-content:space-between;
+  padding:9px 15px;
+  color:#71859d;
+  font-size:12px;
+  border-top:1px solid var(--border)
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  padding:15px;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap
+}
+
+.actions button{
+  flex:1;
+  min-width:145px
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:18px
+}
+
+.feature{
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:#ffffff06;
+  transition:.25s
+}
+
+.feature:hover{
+  transform:translateY(-5px);
+  background:#ffffff0b
+}
+
+.feature b{
+  display:block;
+  margin:10px 0 6px
+}
+
+.feature small{
+  color:var(--muted);
+  line-height:1.5
+}
+
+.icon{
+  font-size:25px
+}
+
+.section{
+  margin-top:50px
+}
+
+.section h2{
+  text-align:center;
+  font-size:30px;
+  margin-bottom:20px
+}
+
+.tools{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px
+}
+
+.tool{
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:#ffffff06
+}
+
+.tool h3{
+  margin:8px 0
+}
+
+.tool p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5
+}
+
+.tool button{
+  margin-top:8px
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,30px);
+  opacity:0;
+  background:#13263e;
+  border:1px solid #ffffff18;
+  padding:12px 18px;
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  transition:.3s;
+  z-index:20
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+.history{
+  margin-top:18px;
+  display:none
+}
+
+.history h3{
+  margin:0 0 10px
+}
+
+.histitem{
+  padding:11px 13px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  margin:7px 0;
+  color:#b8c8da;
+  cursor:pointer
+}
+
+.switch{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:var(--muted);
+  font-size:13px
+}
+
+@media(max-width:850px){
+
+  .main{
+    grid-template-columns:1fr
+  }
+
+  .panel+.panel{
+    border-left:0;
+    border-top:1px solid var(--border)
+  }
+
+  .features{
+    grid-template-columns:1fr 1fr
+  }
+
+  .tools{
+    grid-template-columns:1fr
+  }
+
+  .hero h1{
+    letter-spacing:-2px
+  }
+}
+
+@media(max-width:500px){
+
+  .container{
+    padding:14px 10px 50px
+  }
+
+  .features{
+    grid-template-columns:1fr
+  }
+
+  .toolbar{
+    padding:10px
+  }
+
+  .toolbar button{
+    font-size:12px;
+    padding:9px
+  }
+
+  .actions{
+    padding:11px
+  }
+
+  textarea{
+    height:250px;
+    font-size:16px
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+  <i class="orb o1"></i>
+  <i class="orb o2"></i>
+  <i class="orb o3"></i>
+</div>
+
+<div class="container">
+
+<nav class="nav">
+
+  <div class="brand">
+    <div class="logo">У</div>
+    UzKiril <span>PRO</span>
+  </div>
+
+  <span>⚡ Tezkor • Bepul • Offline</span>
+
+</nav>
+
+<section class="hero">
+
+  <div class="badge">
+    ✨ Yangi avlod matn konvertori
+  </div>
+
+  <h1>Lotin ↔ Кирилл</h1>
+
+  <p>
+    O‘zbekcha matnlarni chiroyli interfeysda bir zumda
+    kirill yozuviga o‘giring, nusxalang, yuklab oling
+    va tarixingizni saqlang.
+  </p>
+
+</section>
+
+
+<div class="card">
+
+<div class="toolbar">
+
+<button id="mode1"
+        class="active"
+        onclick="setMode('toCyr')">
+  Lotin → Кирилл
+</button>
+
+<button id="mode2"
+        onclick="setMode('toLat')">
+  Кирилл → Lotin
+</button>
+
+<div class="spacer"></div>
+
+<label class="switch">
+  🌙
+  <input id="dark"
+         type="checkbox"
+         checked
+         onchange="toggleTheme()">
+  Tungi rejim
+</label>
+
+</div>
+
+
+<div class="main">
+
+
+<div class="panel">
+
+<div class="panelhead">
+
+<span id="leftTitle">
+  O‘zbekcha lotin
+</span>
+
+<span class="tag">
+  INPUT
+</span>
+
+</div>
+
+<textarea id="input"
+placeholder="Matningizni shu yerga yozing yoki joylang..."></textarea>
+
+<div class="foot">
+
+<span id="inCount">
+  0 belgi • 0 so‘z
+</span>
+
+<span>
+  Ctrl + Enter
+</span>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="panelhead">
+
+<span id="rightTitle">
+  Кирилл натижа
+</span>
+
+<span class="tag">
+  OUTPUT
+</span>
+
+</div>
+
+<textarea id="output"
+readonly
+placeholder="Натижа шу ерда пайдо бўлади..."></textarea>
+
+<div class="foot">
+
+<span id="outCount">
+  0 belgi • 0 so‘z
+</span>
+
+<span>
+  UzKiril
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn primary"
+        onclick="convert()">
+  ✨ O‘girish
+</button>
+
+<button class="btn"
+        onclick="copyOut()">
+  📋 Nusxalash
+</button>
+
+<button class="btn"
+        onclick="swap()">
+  ↔️ Almashtirish
+</button>
+
+<button class="btn"
+        onclick="downloadTxt()">
+  ⬇️ TXT yuklash
+</button>
+
+<button class="btn"
+        onclick="clearAll()">
+  🗑️ Tozalash
+</button>
+
+</div>
+
+</div>
+
+
+<div class="features">
+
+<div class="feature">
+
+<div class="icon">⚡</div>
+
+<b>Juda tez</b>
+
+<small>
+Internet talab qilmaydi.
+Matn brauzeringizning o‘zida qayta ishlanadi.
+</small>
+
+</div>
+
+
+<div class="feature">
+
+<div class="icon">📋</div>
+
+<b>Bir bosishda copy</b>
+
+<small>
+Tayyor natijani bir tugma bilan clipboard'ga oling.
+</small>
+
+</div>
+
+
+<div class="feature">
+
+<div class="icon">🔄</div>
+
+<b>2 tomonlama</b>
+
+<small>
+Lotin → Кирилл va Кирилл → Lotin rejimlari mavjud.
+</small>
+
+</div>
+
+
+<div class="feature">
+
+<div class="icon">📱</div>
+
+<b>Telefon uchun</b>
+
+<small>
+Responsive dizayn Android, iPhone va kompyuterda ishlaydi.
+</small>
+
+</div>
+
+</div>
+
+
+<section class="section">
+
+<h2>
+🧰 Qo‘shimcha funksiyalar
+</h2>
+
+<div class="tools">
+
+
+<div class="tool">
+
+<div class="icon">
+🔢
+</div>
+
+<h3>
+Matn statistikasi
+</h3>
+
+<p>
+Belgi, so‘z va qatorlar sonini avtomatik hisoblaydi.
+</p>
+
+<button class="btn"
+onclick="showStats()">
+Statistikani ko‘rish
+</button>
+
+</div>
+
+
+<div class="tool">
+
+<div class="icon">
+🧹
+</div>
+
+<h3>
+Format tozalash
+</h3>
+
+<p>
+Ortiqcha bo‘sh joylar va qatorlarni tartiblaydi.
+</p>
+
+<button class="btn"
+onclick="cleanText()">
+Tozalash
+</button>
+
+</div>
+
+
+<div class="tool">
+
+<div class="icon">
+🕘
+</div>
+
+<h3>
+Tarix
+</h3>
+
+<p>
+Oxirgi o‘girilgan matnlarni shu brauzerda saqlaydi.
+</p>
+
+<button class="btn"
+onclick="toggleHistory()">
+Tarixni ochish
+</button>
+
+</div>
+
+</div>
+
+<div id="history"
+     class="history card"
+     style="padding:18px">
+</div>
+
+</section>
+
+</div>
+
+
+<div id="toast"
+     class="toast">
+</div>
+
+
+<script>
+
+let mode='toCyr';
+
+const $ = id => document.getElementById(id);
+
+
+function toast(t){
+
+  $('toast').textContent=t;
+
+  $('toast').classList.add('show');
+
+  setTimeout(
+    ()=>$('toast').classList.remove('show'),
+    1600
+  );
+
+}
+
+
+function setMode(m){
+
+  mode=m;
+
+  $('mode1').classList.toggle(
+    'active',
+    m==='toCyr'
+  );
+
+  $('mode2').classList.toggle(
+    'active',
+    m==='toLat'
+  );
+
+  $('leftTitle').textContent =
+    m==='toCyr'
+    ? 'O‘zbekcha lotin'
+    : 'Кирилл матн';
+
+  $('rightTitle').textContent =
+    m==='toCyr'
+    ? 'Кирилл натижа'
+    : 'O‘zбекча lotin';
+
+  $('input').placeholder =
+    m==='toCyr'
+    ? 'Masalan: Assalomu alaykum, bugun qanday?'
+    : 'Масалан: Ассалому алайкум, бугун кандай?';
+
+  $('output').value='';
+
+  updateStats();
+
+}
+
+
+const toCyr={
+
+A:'А',a:'а',
+B:'Б',b:'б',
+D:'Д',d:'д',
+E:'Е',e:'е',
+F:'Ф',f:'ф',
+G:'Г',g:'г',
+H:'Ҳ',h:'ҳ',
+I:'И',i:'и',
+J:'Ж',j:'ж',
+K:'К',k:'к',
+L:'Л',l:'л',
+M:'М',m:'м',
+N:'Н',n:'н',
+O:'О',o:'о',
+P:'П',p:'п',
+Q:'Қ',q:'қ',
+R:'Р',r:'р',
+S:'С',s:'с',
+T:'Т',t:'т',
+U:'У',u:'у',
+V:'В',v:'в',
+X:'Х',x:'х',
+Y:'Й',y:'й',
+Z:'З',z:'з'
+
+};
+
+
+const toLat={
+
+А:'A',а:'a',
+Б:'B',б:'b',
+В:'V',в:'v',
+Г:'G',г:'g',
+Ғ:"G‘",ғ:"g‘",
+Д:'D',д:'d',
+Е:'E',е:'e',
+Ё:'Yo',ё:'yo',
+Ж:'J',ж:'j',
+З:'Z',з:'z',
+И:'I',и:'i',
+Й:'Y',й:'y',
+К:'K',к:'k',
+Қ:'Q',қ:'q',
+Л:'L',л:'l',
+М:'M',м:'m',
+Н:'N',н:'n',
+О:'O',о:'o',
+П:'P',п:'p',
+Р:'R',р:'r',
+С:'S',с:'s',
+Т:'T',т:'t',
+У:'U',у:'u',
+Ф:'F',ф:'f',
+Х:'X',х:'x',
+Ҳ:'H',ҳ:'h',
+Ц:'S',ц:'s',
+Ч:'Ch',ч:'ch',
+Ш:'Sh',ш:'sh',
+Ъ:"'",ъ:"'",
+Ь:"",ь:"",
+Э:'E',э:'e',
+Ю:'Yu',ю:'yu',
+Я:'Ya',я:'ya',
+Ў:"O‘",ў:"o‘"
+
+};
+
+
+function convert(){
+
+  let s=$('input').value;
+
+  if(mode==='toCyr'){
+
+    s=s
+
+    .replace(
+      /Gʻ|G‘|G’|Gʼ|gʻ|g‘|g’|gʼ/g,
+      m=>/[A-Z]/.test(m[0])?'Ғ':'ғ'
+    )
+
+    .replace(
+      /Oʻ|O‘|O’|Oʼ|oʻ|o‘|o’|oʼ/g,
+      m=>/[A-Z]/.test(m[0])?'Ў':'ў'
+    )
+
+    .replace(
+      /Sh|SH|sh/g,
+      m=>m==='SH'||m==='Sh'?'Ш':'ш'
+    )
+
+    .replace(
+      /Ch|CH|ch/g,
+      m=>m==='CH'||m==='Ch'?'Ч':'ч'
+    );
+
+    s=[...s]
+      .map(c=>toCyr[c]||c)
+      .join('');
+
+  }else{
+
+    s=[...s]
+      .map(c=>toLat[c]??c)
+      .join('');
+
+  }
+
+  $('output').value=s;
+
+  updateStats();
+
+  saveHistory(s);
+
+  toast('✅ Tayyor!');
+
+}
+
+
+function copyOut(){
+
+  if(!$('output').value)
+    convert();
+
+  navigator.clipboard
+    .writeText($('output').value)
+    .then(
+      ()=>toast('📋 Nusxalandi!')
+    );
+
+}
+
+
+function swap(){
+
+  let a=$('input').value;
+
+  $('input').value=$('output').value;
+
+  $('output').value=a;
+
+  setMode(
+    mode==='toCyr'
+    ? 'toLat'
+    : 'toCyr'
+  );
+
+  $('output').value=a;
+
+  updateStats();
+
+  toast('↔️ Almashtirildi');
+
+}
+
+
+function cleanText(){
+
+  $('input').value=
+    $('input').value
+      .replace(/[ \t]+/g,' ')
+      .replace(/\n{3,}/g,'\n\n')
+      .trim();
+
+  updateStats();
+
+  toast('🧹 Matn tozalandi');
+
+}
+
+
+function clearAll(){
+
+  $('input').value='';
+
+  $('output').value='';
+
+  updateStats();
+
+  toast('🗑️ Tozalandi');
+
+}
+
+
+function updateStats(){
+
+  for(
+    const id of ['input','output']
+  ){
+
+    let s=$(id).value;
+
+    $(id==='input'
+      ? 'inCount'
+      : 'outCount'
+    ).textContent=
+      `${s.length} belgi • ${
+        s.trim()
+        ? s.trim().split(/\s+/).length
+        : 0
+      } so‘z`;
+
+  }
+
+}
+
+
+function downloadTxt(){
+
+  let s=$('output').value;
+
+  if(!s){
+
+    convert();
+
+    s=$('output').value;
+
+  }
+
+  let a=document.createElement('a');
+
+  a.href=
+    URL.createObjectURL(
+      new Blob(
+        [s],
+        {
+          type:'text/plain;charset=utf-8'
+        }
+      )
+    );
+
+  a.download='uzkiril-natija.txt';
+
+  a.click();
+
+  URL.revokeObjectURL(a.href);
+
+  toast('⬇️ Fayl yuklandi');
+
+}
+
+
+function saveHistory(s){
+
+  if(!s) return;
+
+  let h=
+    JSON.parse(
+      localStorage.uzkirilHistory||'[]'
+    );
+
+  h.unshift({
+    text:s,
+    time:new Date().toLocaleString()
+  });
+
+  localStorage.uzkirilHistory=
+    JSON.stringify(
+      h.slice(0,10)
+    );
+
+}
+
+
+function toggleHistory(){
+
+  let el=$('history');
+
+  el.style.display=
+    el.style.display==='block'
+    ? 'none'
+    : 'block';
+
+  let h=
+    JSON.parse(
+      localStorage.uzkirilHistory||'[]'
+    );
+
+  el.innerHTML=
+    '<h3>🕘 So‘nggi natijalar</h3>'
+    +
+    (
+      h.length
+      ?
+      h.map(
+        (x,i)=>
+        `<div class="histitem"
+          onclick="useHist(${i})">
+          ${x.text.slice(0,100)
+            .replace(/</g,'&lt;')}
+          ${x.text.length>100?'…':''}
+          <br>
+          <small>${x.time}</small>
+        </div>`
+      ).join('')
+      :
+      '<span style="color:#91a4bb">Hozircha tarix bo‘sh.</span>'
+    );
+
+}
+
+
+function useHist(i){
+
+  let h=
+    JSON.parse(
+      localStorage.uzkirilHistory||'[]'
+    );
+
+  $('output').value=h[i].text;
+
+  updateStats();
+
+  toast('🕘 Tarixdan olindi');
+
+}
+
+
+function showStats(){
+
+  let s=$('input').value;
+
+  alert(
+`Belgilar: ${s.length}
+So‘zlar: ${
+  s.trim()
+  ? s.trim().split(/\s+/).length
+  : 0
+}
+Qatorlar: ${
+  s
+  ? s.split('\n').length
+  : 0
+}`
+  );
+
+}
+
+
+function toggleTheme(){
+
+  document.body.style.filter=
+    $('dark').checked
+    ? 'none'
+    : 'invert(.92) hue-rotate(180deg)';
+
+}
+
+
+$('input')
+  .addEventListener(
+    'input',
+    updateStats
+  );
+
+
+$('input')
+  .addEventListener(
+    'keydown',
+    e=>{
+      if(
+        e.ctrlKey &&
+        e.key==='Enter'
+      ){
+        convert();
+      }
+    }
+  );
+
+</script>
+
+</body>
+</html>
